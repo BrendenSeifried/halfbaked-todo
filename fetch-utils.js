@@ -12,12 +12,22 @@ export async function createTodo(todo) {
     return checkError(response);
 }
 
-export async function deleteAllTodos() {
-    // delete all todos for this user in supabase
-    const response = await client.from('todos').delete().match({ user_id: client.auth.user().id });
 
-    return checkError(response);
+
+export async function deleteAllTodos() {
+    const resp = await client.from('todos').delete().match({ user_id: client.auth.user().id });
+    return checkError(resp);
 }
+
+// export async function deleteAllTodos() {
+//     // delete all todos for this user in supabase
+//     // const response = await client.from('todos').delete().match({ user_id: client.auth.user().id });
+
+   
+    
+
+//     // return checkError(response);
+// }
 
 export async function getTodos() {
     // get all todos for this user from supabase
