@@ -13,7 +13,7 @@ checkAuth();
 //const todosEl = document.querySelector('.todos');
 const todoForm = document.querySelector('.todo-form');
 const logoutButton = document.querySelector('#logout');
-//const deleteButton = document.querySelector('.delete-button');
+const deleteButton = document.querySelector('.delete-button');
 
 
 async function renderTodos() {
@@ -46,15 +46,6 @@ todoForm.addEventListener('submit', async(e) => {
 
 });
 
-async function displayTodos() {
-    // fetch the todos
-    await getTodos();
-    // display the list of todos
-    await renderTodos();
-    // be sure to give each todo an event listener
-
-    // on click, complete that todo
-}
 
 // // add an on load listener that fetches and displays todos on load
 
