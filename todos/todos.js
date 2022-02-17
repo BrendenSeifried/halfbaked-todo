@@ -40,7 +40,7 @@ todoForm.addEventListener('submit', async(e) => {
  
     await createTodo(todo);
     renderTodos();
-    todoForm.reset(); 
+    //todoForm.reset(); 
      
     
 
