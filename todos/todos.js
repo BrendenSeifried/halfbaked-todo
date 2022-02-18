@@ -32,7 +32,7 @@ async function renderTodos() {
 renderTodos();
 
 todoForm.addEventListener('submit', async(e) => {
-    e.preventDefault;
+    e.preventDefault();
     
     const todoData = new FormData(todoForm);
     const todo = todoData.get('todo');
