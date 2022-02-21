@@ -10,26 +10,40 @@ import { renderTodo } from '../render-utils.js';
 
 checkAuth();
 
-const todosEl = document.querySelector('.todos');
 const todoForm = document.querySelector('.todo-form');
 const logoutButton = document.querySelector('#logout');
 const deleteButton = document.querySelector('.delete-button');
 
+
+async function renderTodos() {
+    const derp = document.getElementById('listing');
+    derp.textContent = '';
+    const todos = await getTodos();
+    for (let todo of todos) {
+        const li = renderTodo(todo);
+        li.addEventListener('click', async() => {
+            await completeTodo(todo.id);
+            renderTodos();
+        });
+        derp.append(li);
+    }
+    
+}
+renderTodos();
+
 todoForm.addEventListener('submit', async(e) => {
-    // on submit, create a todo, reset the form, and display the todos
+    e.preventDefault();
+    
+    const todoData = new FormData(todoForm);
+    const todo = todoData.get('todo');
+ 
+    await createTodo(todo);
+    renderTodos();
+     
+    
+
 });
 
-async function displayTodos() {
-    // fetch the todos
-    
-    // display the list of todos
-
-    // be sure to give each todo an event listener
-
-    // on click, complete that todo
-}
-
-// add an on load listener that fetches and displays todos on load
 
 logoutButton.addEventListener('click', () => {
     logout();
@@ -37,7 +51,7 @@ logoutButton.addEventListener('click', () => {
 
 
 deleteButton.addEventListener('click', async() => {
-    // delete all todos
-
-    // then refetch and display the updated list of todos
+    await deleteAllTodos();
+    renderTodos();
+    
 });
